@@ -51,8 +51,8 @@ tf.__version__
 #### Importing the dataset
 ```py
 dataset = pd.read_csv("Churn_modelling.csv")
-X = dataset.iloc[:, 3:-1].values - # -1 means takes the last column, but does not include the last column
-y = dataset.iloc[:, -1].values
+X = dataset.iloc[:, 3:-1].values # -1 means takes the last column, but does not include the last column
+y = dataset.iloc[:, -1].values # -1 means takes the last column
 print(X)
 print(y)
 ```
@@ -67,6 +67,8 @@ print(y)
  [792 'France' 'Female' ... 1 0 38190.78]]
  [1 0 1 ... 1 1 0]
 ```
+- `y` means column "Exited"
+
 #### Encoding categorical data
 ##### **Label** Encoding the "Gender" column
 ```py
@@ -116,8 +118,10 @@ print(X)
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 ```
+- `test_size`: represents 20% of the data in `X` and `y` as the test set and 80% of the data as the training set
+- `random_state`: int or RandomState instance, default = None
 
-#### Feature Scaling
+#### Feature Scaling (特徵縮放)
 ```py
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
@@ -129,3 +133,7 @@ print(X_train.shape)
 ```
 (8000, 11)
 ```
+- `StandardScaler`: Normally distribute the data, the average value will become 0, and the standard deviation will become 1, reducing the influence of outliers (將資料常態分布化，平均值會變為 0、標準差變為 1，使離群值影響降低)
+- `fit_trasform`: **Fit to data**, then transform it
+- `transform`: Perform **standardization** by **centering** and **scaling**
+    - We call `fit_transform()` on the training set. In fact, we have found the mean μ and variance σ^2, that is, we have found the transformation rule. We use this rule on the training set. Similarly, we can directly apply it to the test set. **Therefore, in the processing on the test set, we only need to standardize the data and do not need to fit the data again** (我們在訓練集上調用 `fit_transform()`，其實找到了均值 μ 和方差 σ^2，即我們已經找到了轉換規則，我們把這個規則利用在訓練集上，同樣，我們可以直接將其運用到測試集上，所以在測試集上的處理，我們只需要標準化數據而不需要再次擬合數據。)
