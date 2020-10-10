@@ -298,8 +298,7 @@ print(a)
 0.857
 ```
 - Confusion Matrix:
-<table style="text-align: center; 
-    vertical-align: middle;">
+<table>
     <thead>
     <tr>
         <th colspan="2" rowspan="2"></th>
@@ -312,15 +311,15 @@ print(a)
     </thead>
     <tbody>
     <tr>
-        <td rowspan="2" style="font-weight: bold">Predicted class</td>
+        <td rowspan="2">Predicted class</td>
         <td>P</td>
-        <td style="font-weight: bold">TP</td>
+        <td>TP</td>
         <td>FP</td>
     </tr>
     <tr>
         <td>N</td>
         <td>FN</td>
-        <td style="font-weight: bold">TN</td>
+        <td>TN</td>
     </tr>
     </tbody>
 </table>
