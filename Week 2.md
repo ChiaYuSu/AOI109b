@@ -322,4 +322,4 @@ print(a)
     </tbody>
 </table>
 
-- `accuracy_score`:  *(True Positive + True Negative) / Total*
+- `accuracy_score`:  *(**T**rue **P**ositive + **T**rue **N**egative) / Total*
