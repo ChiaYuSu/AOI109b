@@ -137,3 +137,30 @@ print(X_train.shape)
 - `fit_trasform`: **Fit to data**, then transform it
 - `transform`: Perform **standardization** by **centering** and **scaling**
     - We call `fit_transform()` on the training set. In fact, we have found the mean μ and variance σ^2, that is, we have found the transformation rule. We use this rule on the training set. Similarly, we can directly apply it to the test set. **Therefore, in the processing on the test set, we only need to standardize the data and do not need to fit the data again** (我們在訓練集上調用 `fit_transform()`，其實找到了均值 μ 和方差 σ^2，即我們已經找到了轉換規則，我們把這個規則利用在訓練集上，同樣，我們可以直接將其運用到測試集上，所以在測試集上的處理，我們只需要標準化數據而不需要再次擬合數據。)
+
+### Part 2 - Building the ANN
+#### Initializing the ANN
+```py
+ann = tf.keras.models.Sequential()
+```
+
+#### Adding the input layer and the first hidding layer
+```py
+ann.add(tf.keras.layers.Dense(units=6, activation='relu', input_dim = 11))
+```
+- `units`: Positive integer, dimensionality of the output space (大於 0 的整數，代表該層的輸出維度)
+- `activation`: Activation function to use. If you don't specify anything, no activation is applied ([激活函數](https://www.tensorflow.org/api_docs/python/tf/keras/activations))
+    - `relu`: Applies the **Rectified Linear Unit** (線性整流函數) activation function. If the value is positive, the value is output, if the value is negative, the output is 0 
+    <br><img src="Week 2\ReLU.PNG" width="550px" />
+- `input_dim`: Represents the dimensions of the tensor (We have 11 features in `X`)
+
+#### Adding the second hidden layer
+```py
+ann.add(tf.keras.layers.Dense(units=6, activation='relu'))
+```
+
+#### Adding the output layer
+```py
+ann.add(tf.keras.layers.Dense(units=1, activation='sigmoid'))
+```
+- `sigmoid`: Sigmoid activation function (Sigmoid 函數), <img src="Week 2\sigmoid.png" width="30px" />
