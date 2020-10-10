@@ -324,7 +324,7 @@ print(a)
 
 - `accuracy_score`:  *(**T**rue **P**ositive + **T**rue **N**egative) / Total*
 
-#### Part 5 - Evaluating, improving and tuing the ANN
+### Part 5 - Evaluating, improving and tuing the ANN
 #### Evaluating the ANN (評估)
 ```py
 from keras.wrappers.scikit_learn import KerasClassifier
