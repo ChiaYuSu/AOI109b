@@ -167,3 +167,31 @@ ann.compile(optimizer= 'adam', loss = 'binary_crossentropy', metrics= ['accuracy
 - `metrics`: Performance measure (成效衡量指標)
     - `accuracy`: `accuracy` is the easiest indicator in machine learning to evaluate the quality of a model. For other metrics, please refer to [here](https://zhuanlan.zhihu.com/p/95293440)
         - The `accuracy` is the simplest accuracy that everyone knows. For example, we have 6 samples whose true label `y_true` is [0, 1, 3, 3, 4, 2], but is predicted by a model to be [0, 1, 3, 4, 4, 4], that is, `y_pred` = [ 0, 1, 3, 4, 4, 4], then the accuracy of the model = 4/6 = 66.67%
+
+#### Training the ANN on the Training set
+```py
+r = ann.fit(X_train, y_train, batch_size = 32, epochs = 100)
+```
+- Result:
+```
+Epoch 1/100
+250/250 [==============================] - 0s 983us/step - loss: 0.7409 - accuracy: 0.5235
+Epoch 2/100
+250/250 [==============================] - 0s 984us/step - loss: 0.4987 - accuracy: 0.7950
+...
+Epoch 99/100
+250/250 [==============================] - 0s 964us/step - loss: 0.3300 - accuracy: 0.8668
+Epoch 100/100
+250/250 [==============================] - 0s 935us/step - loss: 0.3304 - accuracy: 0.8656
+```
+
+#### Draw historical data of **loss** and **accuracy**
+```py
+import matplotlib.pyplot as plt
+plt.plot(r.history['loss'], label='loss')
+```
+- Result:
+<img src="Week 2\loss_accuracy_plot.png" width="550px" />
+
+
+- `history`: Keras supports the callback API, in which the History function is called by default, and **the loss and accuracy of each round of training are collected**. If there is a test set, the data of the **test set will also be collected**. The historical data will collect the return value of the `fit()` function in the history object.
