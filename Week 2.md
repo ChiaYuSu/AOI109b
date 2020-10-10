@@ -151,7 +151,7 @@ ann.add(tf.keras.layers.Dense(units=6, activation='relu', input_dim = 11))
 - `units`: Positive integer, dimensionality of the output space (大於 0 的整數，代表該層的輸出維度)
 - `activation`: Activation function to use. If you don't specify anything, no activation is applied ([激活函數](https://www.tensorflow.org/api_docs/python/tf/keras/activations))
     - `relu`: Applies the **Rectified Linear Unit** (線性整流函數) activation function. If the value is positive, the value is output, if the value is negative, the output is 0 
-    <br><img src="Week 2\ReLU.PNG" width="550px" />
+    <br><img src="Week 2\ReLU.png" width="550px" />
 - `input_dim`: Represents the dimensions of the tensor (We have 11 features in `X`)
 
 #### Adding the second hidden layer
@@ -163,4 +163,4 @@ ann.add(tf.keras.layers.Dense(units=6, activation='relu'))
 ```py
 ann.add(tf.keras.layers.Dense(units=1, activation='sigmoid'))
 ```
-- `sigmoid`: Sigmoid activation function (Sigmoid 函數), <img src="Week 2\sigmoid.png" width="30px" />
+- `sigmoid`: Sigmoid activation function (Sigmoid 函數), <img src="Week 2\sigmoid.png" width="40px" />
