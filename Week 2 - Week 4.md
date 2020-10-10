@@ -344,7 +344,7 @@ def build_classifier():
 ann_cv = KerasClassifier(build_fn = build_classifier, batch_size = 32, epochs = 100)
 accuracies = cross_val_score(estimator = ann_cv, X = X_train, y = y_train, cv = 10, n_jobs = -1)
 mean = accuracies.mean()
-variance = accuracies.std()
+variance = accuracies.std() # Standard deviation
 print("----------- accuracies -----------")
 print(accuracies)
 print("----------- Mean + Variance -----------")
