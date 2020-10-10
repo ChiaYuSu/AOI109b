@@ -5,7 +5,7 @@
 
 ### Structure of Course
 - Week 1: Explain the syllabus
-- Week 2 - Week 5: ANN
+- **Week 2 - Week 5: ANN**
 - Week 6 - Week 8: CNN-1
 - Week 9: Midterm
 - Week 10 - Week 12: CNN-2
