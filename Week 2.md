@@ -154,3 +154,16 @@ ann.add(tf.keras.layers.Dense(units=1, activation='sigmoid'))
 ```
 - `sigmoid`: Sigmoid activation function (Sigmoid 函數), <img src="Week 2\sigmoid.png" width="70px" />. The sigmoid function is the **most frequently used** activation function at the beginning of the deep learning field. The `sigmoid()` function is simply a mapping function, which maps any variable to between [0, 1] (Sigmoid 函數簡單來講就是個映射函數，將任何變量映射到 [0, 1] 之間). The most commonly seen application scenario is when we are training the model to do binary classification (二分類), we only need to set the threshold, and judge the value less than 0.5 as 0 and the value greater than 0.5 as 1. Then we can make a two-class prediction.
 <br><img src="Week 2\sigmoid_pic.png" width="550px" />
+
+### Part 3 - Training the ANN
+#### Compiling the ANN
+```py
+ann.compile(optimizer= 'adam', loss = 'binary_crossentropy', metrics= ['accuracy'])
+```
+- `optimizer`: Optimization function (優化函數)
+    - `adam`: Adaptive Moment Estimation, more other optimizers can refer to [here](https://www.cnblogs.com/guoyaohua/p/8542554.html)
+- `loss`: Loss function (損失函數)
+    - `binary_crossentropy`: `binary_crossentropy` loss function, generally used for binary classification (二分類). For other loss functions, please refer to [here](https://www.itread01.com/content/1543994346.html)
+- `metrics`: Performance measure (成效衡量指標)
+    - `accuracy`: `accuracy` is the easiest indicator in machine learning to evaluate the quality of a model. For other metrics, please refer to [here](https://zhuanlan.zhihu.com/p/95293440)
+        - The `accuracy` is the simplest accuracy that everyone knows. For example, we have 6 samples whose true label `y_true` is [0, 1, 3, 3, 4, 2], but is predicted by a model to be [0, 1, 3, 4, 4, 4], that is, `y_pred` = [ 0, 1, 3, 4, 4, 4], then the accuracy of the model = 4/6 = 66.67%.
