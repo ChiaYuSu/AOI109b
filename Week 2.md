@@ -298,7 +298,8 @@ print(a)
 0.857
 ```
 - Confusion Matrix:
-<table>
+<table style="text-align: center; 
+    vertical-align: middle;">
     <thead>
     <tr>
         <th colspan="2" rowspan="2"></th>
