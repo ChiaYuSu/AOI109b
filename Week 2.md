@@ -1,4 +1,4 @@
-# Week 2 write-up
+# Week 2 to Week 4 write-up
 ## 自動化光學檢測與機器視覺實務
 ### Machine Learning vs. Deep Learning
 <img src="Week 2\MLvsDL.PNG" width="550px" />
@@ -323,3 +323,62 @@ print(a)
 </table>
 
 - `accuracy_score`:  *(**T**rue **P**ositive + **T**rue **N**egative) / Total*
+
+#### Part 5 - Evaluating, improving and tuing the ANN
+#### Evaluating the ANN (評估)
+```py
+from keras.wrappers.scikit_learn import KerasClassifier
+from sklearn.model_selection import cross_val_score
+from keras.models import Sequential
+from keras.layers import Dense
+def build_classifier():
+    classifier = Sequential()
+    classifier.add(Dense(units = 6, kernel_initializer = 'uniform', activation = 'relu', input_dim = 11))
+    classifier.add(Dense(units = 6, kernel_initializer = 'uniform', activation = 'relu'))
+    classifier.add(Dense(units = 1, kernel_initializer = 'uniform', activation = 'sigmoid'))
+    classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+    return classifier
+```
+
+```py
+ann_cv = KerasClassifier(build_fn = build_classifier, batch_size = 32, epochs = 100)
+accuracies = cross_val_score(estimator = ann_cv, X = X_train, y = y_train, cv = 10, n_jobs = -1)
+mean = accuracies.mean()
+variance = accuracies.std()
+print("----------- accuracies -----------")
+print(accuracies)
+print("----------- Mean + Variance -----------")
+print('Mean = ', mean, '; Variance = ', variance)
+```
+
+- Result:
+```
+----------- accuracies -----------
+[0.85750002 0.85874999 0.86250001 0.83999997 0.81625003 0.83125001
+ 0.83125001 0.83375001 0.81625003 0.85124999]
+----------- Mean + Variance -----------
+Mean =  0.8398750066757202 ; Variance =  0.016157904139983605
+```
+
+#### Tuning the ANN (調整)
+```py
+from keras.wrappers.scikit_learn import KerasClassifier
+from sklearn.model_selection import GridSearchCV
+from keras.models import Sequential
+from keras.layers import Dense
+def build_classifier(optimizer):
+    classifier = Sequential()
+    classifier.add(Dense(units = 6, kernel_initializer = 'uniform', activation = 'relu', input_dim = 11))
+    classifier.add(Dense(units = 6, kernel_initializer = 'uniform', activation = 'relu'))
+    classifier.add(Dense(units = 1, kernel_initializer = 'uniform', activation = 'sigmoid'))
+    classifier.compile(optimizer = optimizer, loss = 'binary_crossentropy', metrics = ['accuracy'])
+    return classifier
+```
+```py
+ann_gs = KerasClassifier(build_fn = build_classifier)
+parameters = {'batch_size': [25, 32], 'epochs': [100, 500], 'optimizer': ['adam', 'rmsprop']}
+grid_search = GridSearchCV(estimator = ann_gs, param_grid = parameters, scoring = 'accuracy', cv = 5)
+grid_search = grid_search.fit(X_train, y_train)
+best_parameters = grid_search.best_params_
+best_accuracy = grid_search.best_score_
+```
