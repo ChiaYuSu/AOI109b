@@ -4,26 +4,15 @@
 <img src="Week 2\MLvsDL.PNG" width="550px" />
 
 ### Structure of Course
-| Week | Contents |
-|------|----------|
-| 1    | 說明     |
-| 2    | ANN      |
-| 3    | ANN      |
-| 4    | ANN      |
-| 5    | ANN      |
-| 6    | CNN-1    |
-| 7    | CNN-1    |
-| 8    | CNN-1    |
-| 9    | 期中     |
-| 10   | CNN-2    |
-| 11   | CNN-2    |
-| 12   | CNN-2    |
-| 13   | RNN      |
-| 14   | RNN      |
-| 15   | RNN      |
-| 16   | GAN      |
-| 17   | 期末     |
-| 18   | 成果     |
+- Week 1: Explain the syllabus
+- Week 2 - Week 5: ANN
+- Week 6 - Week 8: CNN-1
+- Week 9: Midterm
+- Week 10 - Week 12: CNN-2
+- Week 13 - Week 15: RNN
+- Week 16: GAN
+- Week 17: Final
+- Week 18: Results presentation
 
 ### Training the Artificial Neural Network (ANN)
 1. 隨機初始化權重，使得權重接近 0 但不等於 0
