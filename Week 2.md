@@ -24,6 +24,9 @@
 7. 當所有數據都輸入神經網路後，稱之為一期 (epoch) 的訓練
 
 ## Code Part
+#### Dataset download
+- [Churn_modelling.csv](https://drive.google.com/file/d/1R5QouDghLLaJzFl_sxcP4bcnBQWFUAND/view?usp=sharing)
+
 #### Importing the libraries
 ```py
 import tensorflow as tf
@@ -189,9 +192,136 @@ Epoch 100/100
 ```py
 import matplotlib.pyplot as plt
 plt.plot(r.history['loss'], label='loss')
+plt.plot(r.history['accuracy'], label='accuracy')
+plt.legend(loc='best', shadow=True)
 ```
 - Result:
 <img src="Week 2\loss_accuracy_plot.png" width="550px" />
 
-
 - `history`: Keras supports the callback API, in which the History function is called by default, and **the loss and accuracy of each round of training are collected**. If there is a test set, the data of the **test set will also be collected**. The historical data will collect the return value of the `fit()` function in the history object.
+- `loc`: Legend position
+
+### Part 4 - Making the predictions and evaluating the model
+#### Predicting the result of a single observation (預測單個觀察的結果)
+##### Homework
+- Use our ANN model to predict if the customer with the following informations will leave the bank:
+    - Geography: France
+    - Credit Score: 600
+    - Gender: Male
+    - Age: 40 years old
+    - Tenure: 3 years
+    - Balance: $60000
+    - Number of Products: 2
+    - Does this customer have a credit card: Yes
+    - Is this customer an Active Member: Yes
+    - Estimated Salary: $50000
+- Question: So, should we say goodbye to that customer?
+
+##### Homework Solution
+```py
+print(ann.predict(sc.transform([[0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]])) > 0.5)
+```
+- Result:
+```
+[[False]]
+```
+- We don't need to say goodbye to the customer
+
+#### Predicting the Test set results
+```py
+y_pred = ann.predict(X_test)
+y_pred = (y_pred > 0.5)
+print("---------- y_pred.reshape ----------")
+print(y_pred.reshape(len(y_pred), 1))
+print("---------- y_test.reshape ----------")
+print(y_test.reshape(len(y_test), 1))
+print("------------ concatenate ------------")
+print(np.concatenate((y_pred.reshape(len(y_pred), 1), y_test.reshape(len(y_test), 1)), axis=1))
+```
+- Result:
+```
+---------- y_pred.reshape ----------
+[[False]
+ [False]
+ [False]
+ ...
+ [False]
+ [False]
+ [False]]
+---------- y_test.reshape ----------
+[[0]
+ [1]
+ [0]
+ ...
+ [0]
+ [0]
+ [0]]
+------------ concatenate ------------
+[[0 0]
+ [0 1]
+ [0 0]
+ ...
+ [0 0]
+ [0 0]
+ [0 0]]
+```
+- `concatenate`: Concate two matrices
+    - `axis`: The axis along which the arrays will be joined. If axis is None, arrays are flattened before use. Default is 0.
+        - `axis = 0`
+        ```py
+        a = np.array([[1, 2], [3, 4]])
+        b = np.array([[5, 6]])
+        print(np.concatenate((a, b), axis=0)) # [[1, 2], [3, 4], [5, 6]]
+        ```
+        - `axis = 1`
+        ```py
+        print(np.concatenate((a, b), axis=1)) # [[1, 2, 5], [3, 4, 6]]
+        ```
+- `reshape`: Gives a new shape to an array without changing its data
+
+#### Making the Confusion Matrix
+```py
+from sklearn.metrics import confusion_matrix, accuracy_score
+cm = confusion_matrix(y_test, y_pred)
+print("---------- confusion_matrix ----------")
+print(cm)
+print("----------- accuracy_score -----------")
+a = accuracy_score(y_test, y_pred)
+print(a)
+```
+- Result:
+```
+---------- confusion_matrix ----------
+[[1510   85]
+ [ 201  204]]
+----------- accuracy_score -----------
+0.857
+```
+- Confusion Matrix:
+<table style="border: 1px">
+<thead>
+  <tr>
+    <th colspan="2" rowspan="2"></th>
+    <th colspan="2">Actual class</th>
+  </tr>
+  <tr>
+    <td>P</td>
+    <td>N</td>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td rowspan="2">Predicted class</td>
+    <td>P</td>
+    <td>TP</td>
+    <td>FP</td>
+  </tr>
+  <tr>
+    <td>N</td>
+    <td>FN</td>
+    <td>TN</td>
+  </tr>
+</tbody>
+</table>
+
+- `accuracy_score`:  *(True Positive + True Negative) / Total*
