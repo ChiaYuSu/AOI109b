@@ -299,7 +299,7 @@ print(a)
 ```
 - Confusion Matrix:
 <table>
-    <thead>
+    <tbody>
     <tr>
         <th colspan="2" rowspan="2"></th>
         <th colspan="2">Actual class</th>
@@ -308,8 +308,6 @@ print(a)
         <td>P</td>
         <td>N</td>
     </tr>
-    </thead>
-    <tbody>
     <tr>
         <td rowspan="2">Predicted class</td>
         <td>P</td>
