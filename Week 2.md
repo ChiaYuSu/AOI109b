@@ -163,4 +163,4 @@ ann.add(tf.keras.layers.Dense(units=6, activation='relu'))
 ```py
 ann.add(tf.keras.layers.Dense(units=1, activation='sigmoid'))
 ```
-- `sigmoid`: Sigmoid activation function (Sigmoid 函數), <img src="Week 2\sigmoid.png" width="40px" />
+- `sigmoid`: Sigmoid activation function (Sigmoid 函數), <img src="Week 2\sigmoid.png" width="60px" />
