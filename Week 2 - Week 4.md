@@ -221,10 +221,15 @@ plt.legend(loc='best', shadow=True)
 
 ##### Homework Solution
 ```py
-print(ann.predict(sc.transform([[0, 0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]])) > 0.5)
+test = [[0.0, 0.0, 600, 1, 40, 3, 60000, 2, 1, 1, 50000]]
+test = sc.transform(test)
+y_pred = ann.predict(test)
+print(y_pred)
+print(y_pred > 0.5)
 ```
 - Result:
 ```
+[[0.04043376]]
 [[False]]
 ```
 - We don't need to say goodbye to the customer
