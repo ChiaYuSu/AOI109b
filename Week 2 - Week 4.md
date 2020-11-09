@@ -32,6 +32,8 @@
 import tensorflow as tf
 import pandas as pd
 import numpy as np
+from tensorflow import keras
+from tensorflow.keras import layers
 ```
 
 #### View tensorflow version
@@ -133,12 +135,12 @@ print(X_train.shape)
 ### Part 2 - Building the ANN
 #### Initializing the ANN
 ```py
-ann = tf.keras.models.Sequential()
+ann = keras.Sequential()
 ```
 
 #### Adding the input layer and the first hidding layer
 ```py
-ann.add(tf.keras.layers.Dense(units=6, activation='relu', input_dim = 11))
+ann.add(layers.Dense(units=6, activation='relu', input_dim = 11))
 ```
 - `units`: Positive integer, dimensionality of the output space (大於 0 的整數，代表該層的輸出維度)
 - `activation`: Activation function to use. If you don't specify anything, no activation is applied ([激活函數](https://www.tensorflow.org/api_docs/python/tf/keras/activations))
@@ -148,12 +150,12 @@ ann.add(tf.keras.layers.Dense(units=6, activation='relu', input_dim = 11))
 
 #### Adding the second hidden layer
 ```py
-ann.add(tf.keras.layers.Dense(units=6, activation='relu'))
+ann.add(layers.Dense(units=6, activation='relu'))
 ```
 
 #### Adding the output layer
 ```py
-ann.add(tf.keras.layers.Dense(units=1, activation='sigmoid'))
+ann.add(layers.Dense(units=1, activation='sigmoid'))
 ```
 - `sigmoid`: Sigmoid activation function (Sigmoid 函數), <img src="Week 2\sigmoid.png" width="70px" />. The sigmoid function is the **most frequently used** activation function at the beginning of the deep learning field. The `sigmoid()` function is simply a mapping function, which maps any variable to between [0, 1] (Sigmoid 函數簡單來講就是個映射函數，將任何變量映射到 [0, 1] 之間). The most commonly seen application scenario is when we are training the model to do binary classification (二分類), we only need to set the threshold, and judge the value less than 0.5 as 0 and the value greater than 0.5 as 1. Then we can make a two-class prediction.
 <br><img src="Week 2\sigmoid_pic.png" width="550px" />
