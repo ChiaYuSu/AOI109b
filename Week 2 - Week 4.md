@@ -395,3 +395,33 @@ grid_search = grid_search.fit(X_train, y_train)
 best_parameters = grid_search.best_params_
 best_accuracy = grid_search.best_score_
 ```
+- Result:
+```
+256/256 [==============================] - 0s 1ms/step - loss: 0.3294 - accuracy: 0.8656
+Epoch 459/500
+256/256 [==============================] - 0s 1ms/step - loss: 0.3292 - accuracy: 0.8659
+Epoch 460/500
+256/256 [==============================] - 0s 2ms/step - loss: 0.3294 - accuracy: 0.8659
+Epoch 461/500
+256/256 [==============================] - 0s 1ms/step - loss: 0.3284 - accuracy: 0.8650
+Epoch 462/500
+...
+Epoch 454/500
+200/200 [==============================] - 0s 1ms/step - loss: 0.3315 - accuracy: 0.8636
+Epoch 455/500
+200/200 [==============================] - 0s 1ms/step - loss: 0.3309 - accuracy: 0.8666
+Epoch 456/500
+200/200 [==============================] - 0s 1ms/step - loss: 0.3315 - accuracy: 0.8637
+Epoch 457/500
+  1/200 [..............................] - ETA: 0s - loss: 0.4008 - accuracy: 0.8125Buffered data was truncated after reaching the output size limit.
+```
+- `GridSearchCV`: Exhaustive search over specified parameter values for an estimator (極盡所能的對所有指定的參數做搜尋，故稱之為暴力搜尋，適合小數據集。透過 `GridSearchCV` 我們可以對所設置的所有參數做所有的可能排列組合下去測，然後取得一個**最佳參數**)
+- `param_grid`: List or dict to optimize parameters (list 或 dict 做最佳化的參數)
+- `scoring`: Accuracy evaluation standard, the following are common standards:
+    - `accuracy`
+    - `average_precision`
+    - `f1`: for binary targets
+    - `recall`
+    - `roc_auc`
+- `best_params_`: Best parameters
+- `best_score_`: Best scores
