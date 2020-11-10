@@ -366,6 +366,11 @@ print('Mean = ', mean, '; Variance = ', variance)
 ----------- Mean + Variance -----------
 Mean =  0.8398750066757202 ; Variance =  0.016157904139983605
 ```
+- `build_fn`: Callable function
+- `estimator`: The object use to fit the data (用於擬合數據的對象)
+- `cv`: K-fold criss-vaildation, default = 5
+- `n_jobs`: Number of jobs to run in parallel, default = 1
+    - -1 means using all processors
 
 #### Tuning the ANN (調整)
 ```py
