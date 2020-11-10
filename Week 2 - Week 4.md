@@ -371,6 +371,7 @@ Mean =  0.8398750066757202 ; Variance =  0.016157904139983605
 - `cv`: K-fold criss-vaildation, default = 5
 - `n_jobs`: Number of jobs to run in parallel, default = 1
     - -1 means using all processors
+- `std`: 標準差
 
 #### Tuning the ANN (調整)
 ```py
