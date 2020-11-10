@@ -1,4 +1,4 @@
-# Week 6 to Week 8 write-up
+# Week 4 to Week 5 write-up
 ## ANN MNIST
 ## Code Part
 #### Import library
