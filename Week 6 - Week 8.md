@@ -127,9 +127,9 @@ plt.legend()
 ```
 - Result:
     - Loss per iteration:
-    <br><img src="Week 6\plot-1.PNG" width="300px" />
+    <br><img src="Week 6\plot-1.png" width="300px" />
     - Accuracy per iteration:
-    <br><img src="Week 6\plot-2.PNG" width="300px" />
+    <br><img src="Week 6\plot-2.png" width="300px" />
 - `loss`: Loss value of **training set**
 - `val_loss`: Loss value of **validation set**
 - `loss` vs. `val_loss`:
@@ -211,5 +211,5 @@ plt.title("True label: %s Predicted: %s" % (y_test[i], p_test[i]))
 (198,)
 Text(0.5, 1.0, 'True label: 4 Predicted: 7')
 ```
-<br><img src="Week 6\plot-3.PNG" width="300px" />
+<br><img src="Week 6\plot-3.png" width="300px" />
 - `(198,)`: 198 prediction errors out of 10,000 data 
